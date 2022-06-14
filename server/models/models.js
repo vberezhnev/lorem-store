@@ -1,7 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
-const User = sequelize.define('user', {
+const User = sequelize.define('user', { // Первый аргумент -- название модели, во втором аргументе оисываем поля, которые будут у этой модели.
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true,},
     password: {type: DataTypes.STRING},
@@ -49,7 +49,7 @@ const TypeBrand = sequelize.define('type_brand', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-
+// Описываем то, как эти модели будут связаны между собой
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
@@ -88,8 +88,3 @@ module.exports = {
     TypeBrand,
     DeviceInfo
 }
-
-
-
-
-

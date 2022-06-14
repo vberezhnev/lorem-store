@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const { User, Basket } = require('../models/models')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { User, Basket } = require('../models/models');
 
 /* const generateJwt = (id, email, role) => {
     return jwt.sign(
@@ -12,8 +12,8 @@ const { User, Basket } = require('../models/models')
 } */
 
 class UserController {
-    async registration(req, res, next) {
-        /* const { email, password, role } = req.body
+  async registration(req, res, next) {
+    /* const { email, password, role } = req.body
         if (!email || !password) {
             return next(ApiError.badRequest('Некорректный email или password'))
         }
@@ -26,10 +26,10 @@ class UserController {
         const basket = await Basket.create({ userId: user.id })
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({ token }) */
-    }
+  }
 
-    async login(req, res, next) {
-        /* const { email, password } = req.body
+  async login(req, res, next) {
+    /* const { email, password } = req.body
         const user = await User.findOne({ where: { email } })
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
@@ -40,14 +40,18 @@ class UserController {
         }
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({ token }) */
-    }
+  }
 
-    async check(req, res, next) {
-        /* const token = generateJwt(req.user.id, req.user.email, req.user.role)
+  async check(req, res, next) {
+    /* const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({ token }) */
-        const {id} = req.query
-        res.json(id)
+
+    const { id } = req.query;
+    if (!id) {
+      return next(ApiError.badRequest('Не задан ID'));
     }
+    res.json(id);
+  }
 }
 
-module.exports = new UserController()
+module.exports = new UserController();

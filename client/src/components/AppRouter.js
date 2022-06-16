@@ -7,8 +7,7 @@ import { Context } from '../index';
 
 export default function AppRouter() {
   const {user} = useContext(Context)
-
-  console.log(user)
+  
   return (
     <Routes>
       {user &&

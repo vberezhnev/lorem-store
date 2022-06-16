@@ -8,10 +8,8 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   Button,
   Menu,
-  useColorModeValue,
   Heading
 } from '@chakra-ui/react';
 

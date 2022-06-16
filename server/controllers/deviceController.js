@@ -34,7 +34,7 @@ class DeviceController {
         let { brandId, typeId, limit, page } = req.query
         page = page || 1
         limit = limit || 9
-        let offset = page * limit - limit
+        let offset = page * limit - limit // Отступ товаров 
         let devices;
         if (!brandId && !typeId) {
             devices = await Device.findAndCountAll({ limit, offset })

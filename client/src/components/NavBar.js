@@ -12,7 +12,7 @@ const NavBar = observer(() => {
 
   return (
     <>
-      <Box bg={'gray.800'} px={20}>
+      <Box bg={'gray.800'} px={10}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} color="white">
           <HStack spacing={8} alignItems={'center'}>
             <Heading colorScheme={'twitter'} as="h3" size="lg">

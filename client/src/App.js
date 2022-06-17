@@ -11,7 +11,7 @@ function App() {
     <ChakraProvider>
       <BrowserRouter>
         <NavBar /> 
-        <Box p={20}>
+        <Box p={10}>
           <AppRouter /> {/* <-- Main content */}
         </Box>
       </BrowserRouter>

@@ -5,6 +5,8 @@ import App from "./App";
 import DeviceStore from "./store/DeviceStore";
 import UserStore from "./store/UserStore";
 
+import './index.css'
+
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 

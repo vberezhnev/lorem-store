@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
 
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 
 const TypeBar = observer(() => {
   const { device } = useContext(Context);
@@ -10,17 +10,21 @@ const TypeBar = observer(() => {
   return (
     <Box border="1px" borderColor="gray.200" p={5} borderRadius="lg" w={'80'} fontSize="md">
       <ul>
-        {device.types.map((type) => (
-          <Box
-            key={type.id}
-            onClick={() => device.setSelectedType(type)}
-            className={(type.id === device.selectedType.id) ? {bg: 'red'} : console.log('none')}
-            _hover={{ bg: '#ebedf0', width: '100%', borderRadius: '10px', cursor: 'pointer' }}
-            px={4}
-            py={2}>
-            {type.name}
-          </Box>
-        ))}
+        {device.types.map(
+          (
+            type, // FIXME: исправить подсветку кнопки (выбраной категории)
+          ) => (
+            <Button
+              key={type.id}
+              onClick={() => device.setSelectedType(type)}
+              //className={type.id === device.selectedType.id ? 'active' : ''}
+              px={4}
+              py={2}
+              m={2}>
+              {type.name}
+            </Button>
+          ),
+        )}
       </ul>
     </Box>
   );

@@ -12,9 +12,10 @@ const BrandBar = observer(() => {
         <Box
           style={{ cursor: 'pointer' }}
           key={brand.id}
-          className="p-3"
+          p={3}
           onClick={() => device.setSelectedBrand(brand)}
-          borderColor={brand.id === device.selectedBrand.id ? 'red.400' : 'gray.400'}>
+          borderTopColor={brand.id === device.selectedBrand.id ? 'red.400' : 'gray.400'}
+          >
           {brand.name}
         </Box>
       ))}

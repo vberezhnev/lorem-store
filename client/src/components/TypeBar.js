@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { Context } from '../index';
+import { Box, Button } from '@chakra-ui/react';
 import { observer } from 'mobx-react-lite';
 
-import { Box, Button } from '@chakra-ui/react';
+import { Context } from '../index';
 
 const TypeBar = observer(() => {
   const { device } = useContext(Context);

@@ -12,6 +12,9 @@ export default class DeviceStore {
     this._brands = [
       { id: 1, name: 'Samsung' },
       { id: 2, name: 'Apple' },
+      { id: 3, name: 'Lenovo' },
+      { id: 4, name: 'Xiaomi' },
+      { id: 5, name: 'Philips' },
     ];
     this._devices = [
       {
@@ -70,23 +73,28 @@ export default class DeviceStore {
     this._devices = devices;
   }
 
-  get setSelectedType() {
-    return this._selectedType;
-  }
-
-  get selectedBrand() {
-    return this._selectedBrand;
-  }
-
   get types() {
     return this._types;
   }
-
   get brands() {
     return this._brands;
   }
-
   get devices() {
     return this._devices;
+  }
+  get selectedType() {
+    return this._selectedType;
+  }
+  get selectedBrand() {
+    return this._selectedBrand;
+  }
+  get totalCount() {
+    return this._totalCount;
+  }
+  get page() {
+    return this._page;
+  }
+  get limit() {
+    return this._limit;
   }
 }

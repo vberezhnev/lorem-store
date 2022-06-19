@@ -2,6 +2,8 @@ import React from 'react';
 import { Center, Grid, Wrap, WrapItem, Box, GridItem } from '@chakra-ui/react';
 import TypeBar from '../components/TypeBar';
 import BrandBar from '../components/BrandBar';
+import DeviceList from '../components/DeviceList';
+import DeviceItem from '../components/DeviceItem';
 
 export default function Shop() {
   return (
@@ -13,6 +15,10 @@ export default function Shop() {
 
         <GridItem colSpan={2}>
           <BrandBar />
+        </GridItem>
+
+        <GridItem colSpan={3} rowSpan={2}>
+          <DeviceList h={100} />
         </GridItem>
       </Grid>
     </div>

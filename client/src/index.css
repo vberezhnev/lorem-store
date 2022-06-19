@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #f7f8f8;
+}
+
 ul {
     list-style-type: none;
 }

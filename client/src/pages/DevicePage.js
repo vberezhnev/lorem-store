@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Grid, GridItem, Button } from '@chakra-ui/react';
+import { Box, Image, Grid, GridItem, Button, Center } from '@chakra-ui/react';
 
 export default function DevicePage() {
   const device = {
@@ -16,7 +16,7 @@ export default function DevicePage() {
     { id: 3, title: 'Процессор', description: 'Pentium 3' },
     { id: 4, title: 'Колличество ядер', description: '2' },
     { id: 5, title: 'Аккумулятор', description: '4000' },
-];
+  ];
 
   return (
     <Box className="h-screen">
@@ -41,12 +41,16 @@ export default function DevicePage() {
         </GridItem>
 
         <GridItem>
-          <p className="text-2xl">Характеристики:</p>
-          {description.map((info) => (
-            <Box key={info.id}>
-              {info.title}: {info.description}
+          <Center>
+            <Box>
+              <p className="text-2xl">Характеристики:</p>
+              {description.map((info) => (
+                <Box key={info.id}>
+                  {info.title}: {info.description}
+                </Box>
+              ))}
             </Box>
-          ))}
+          </Center>
         </GridItem>
       </Grid>
     </Box>

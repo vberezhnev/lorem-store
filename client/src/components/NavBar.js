@@ -1,14 +1,16 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Context } from '../index';
-import { SHOP_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 
 import { Box, Flex, HStack, Button, Menu, Heading } from '@chakra-ui/react';
 
+
 const NavBar = observer(() => {
   const { user } = useContext(Context);
+  const navigate = useNavigate()
 
   return (
     <>
@@ -22,12 +24,8 @@ const NavBar = observer(() => {
           <Flex alignItems={'center'}>
             {user.isAuth ? (
               <Menu>
-                <Button colorScheme="green" mr={2}>
-                  Админ-панель
-                </Button>
-                <Button colorScheme="green" onClick={() => user.setIsAuth(false)}>
-                  Выйти
-                </Button>
+                <Button colorScheme="green" mr={2} onClick={() => navigate(ADMIN_ROUTE)}>Админ-панель</Button>
+                <Button colorScheme="green" onClick={() => navigate()}>Выйти</Button>
               </Menu>
             ) : (
               <Menu>

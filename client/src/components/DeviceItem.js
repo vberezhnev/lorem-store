@@ -10,7 +10,7 @@ const DeviceItem = ({ device }) => {
   return (
     <Flex m={2} onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
       <Wrap>
-        <div className="max-w-sm overflow-hidden rounded-md shadow-sm duration-200 hover:scale-[1.01]">
+        <Box className="max-w-sm overflow-hidden rounded-md duration-200 hover:scale-[1.01]" boxShadow='md'>
           <img src={device.img} className="h-auto w-full" alt="item"/>
           <Box p={5}>
             <p className="flex justify-center items-center text-lg mb-2 text-gray-700">{device.name}</p>
@@ -20,7 +20,7 @@ const DeviceItem = ({ device }) => {
               <InfoIcon />
             </button>
           </Box>
-        </div>
+        </Box>
       </Wrap>
     </Flex>
   );

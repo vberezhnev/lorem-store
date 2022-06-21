@@ -37,8 +37,8 @@ export default function Admin() {
         Добавить устройство
       </Button>
 
-      {/* <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
-      <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} /> */}
+      <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
+      <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} />
       <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
     </div>
   );

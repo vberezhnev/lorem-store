@@ -9,21 +9,22 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Input
 } from '@chakra-ui/react';
 
 const CreateType = ({ show, onHide }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = React.useRef(null)
 
   return (
     <div>
-      <Button onClick={onOpen}>Open Modal</Button>
       <Modal isOpen={show} onClose={onHide} finalFocusRef={finalRef}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Добавить тип</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody>
+            <Input placeholder={'Введите название типа'} />
+          </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onHide}>

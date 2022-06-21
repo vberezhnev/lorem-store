@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { Context } from '../index';
-import { ADMIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 
 import { Box, Flex, HStack, Button, Menu, Heading } from '@chakra-ui/react';
 
@@ -29,7 +29,7 @@ const NavBar = observer(() => {
               </Menu>
             ) : (
               <Menu>
-                <Button colorScheme="green" onClick={() => user.setIsAuth(true)}>
+                <Button colorScheme="green" onClick={() => navigate(LOGIN_ROUTE)}>
                   Авторизация
                   {/* <NavLink to={LOGIN_ROUTE}>Авторизация</NavLink> */}
                 </Button>

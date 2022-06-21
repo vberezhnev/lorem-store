@@ -1,28 +1,38 @@
 import React, { useContext, useState } from 'react';
-import { Flex, Heading, Button, Input, Link } from '@chakra-ui/react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE } from '../utils/consts';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 import { registration, login, check } from '../http/userAPI';
+
 import { Context } from '../index';
+import { observer } from 'mobx-react-lite';
 
-const Auth = () => {
-  const location = useLocation();
-  const isLogin = location.pathname === LOGIN_ROUTE;
+import { Flex, Heading, Button, Input, Link } from '@chakra-ui/react';
+import AlertMessage  from '../components/AlertMessage' 
+
+const Auth = observer(() => {
   const { user } = useContext(Context);
-
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isLogin = location.pathname === LOGIN_ROUTE;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const click = async () => {
-    let data;
-    if (isLogin) {
-      data = await login(email, password);
-    } else {
-      data = await registration(email, password);
+    try {
+      let data;
+      if (isLogin) {
+        data = await login(email, password);
+      } else {
+        data = await registration(email, password);
+      }
+      user.setUser(user);
+      user.setIsAuth(true);
+      navigate(SHOP_ROUTE);
+    } catch (e) {
+      //return <AlertMessage text={e.response.data.message} />
+      alert(e.response.data.message)
     }
-
-    user.setUser(user)
-    user.setIsAuth(true)
   };
 
   return (
@@ -38,13 +48,8 @@ const Auth = () => {
           type="password"
         />
 
-        {isLogin ? (
-          <Button colorScheme="green">Войти</Button>
-        ) : (
-          <Button colorScheme="green" onClick={click}>
-            Зарегистрироваться
-          </Button>
-        )}
+        <Button colorScheme="green" onClick={click}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
+        <AlertMessage text='henlo' />
 
         {isLogin ? (
           <Link color={'blue.400'} mt={5}>
@@ -58,6 +63,6 @@ const Auth = () => {
       </Flex>
     </Flex>
   );
-};
+});
 
 export default Auth;

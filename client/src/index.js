@@ -12,7 +12,7 @@ const root = createRoot(rootElement);
 
 export const Context = createContext(null)
 
-console.log(process.env.REACT_APP_API_URL)
+console.log(process.env.API_URL)
 
 root.render(
   <Context.Provider value={{

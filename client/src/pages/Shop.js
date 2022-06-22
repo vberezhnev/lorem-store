@@ -1,26 +1,48 @@
-import React from 'react';
-import { Center, Grid, Wrap, WrapItem, Box, GridItem } from '@chakra-ui/react';
+import { fetchBrands, fetchDevices, fetchTypes } from '../http/deviceAPI';
+import React, { useEffect, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
+import { Context } from '..';
+
+// UI Elements
+import { Center, Grid, Wrap, WrapItem, Box, GridItem, Flex } from '@chakra-ui/react';
+
+// Components
 import TypeBar from '../components/TypeBar';
 import BrandBar from '../components/BrandBar';
 import DeviceList from '../components/DeviceList';
 import DeviceItem from '../components/DeviceItem';
 
-export default function Shop() {
+const Shop = observer(() => {
+  const { device } = useContext(Context);
+
+  useEffect(() => {
+    fetchTypes().then((data) => device.setTypes(data));
+    fetchBrands().then((data) => device.setBrands(data));
+    fetchDevices(null, null, 1, 2).then((data) => {
+      device.setDevices(data.rows);
+      // device.setTotalCount(data.count);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchDevices().then((data) => {
+      device.setDevices(data.rows);
+      // device.setTotalCount(data.count);
+    });
+  }, [device.page, device.selectedType, device.selectedBrand]);
+
   return (
-    <div className="h-screen">
-      <Grid h="200px" templateRows="repeat(2, 1fr)" templateColumns="repeat(5, 1fr)" gap={4}>
-        <GridItem rowSpan={2} colSpan={1}>
-          <TypeBar />
-        </GridItem>
+    <div className="flex flex-wrap h-screen">
+      <TypeBar />
 
-        <GridItem colSpan={2}>
+      <div>
+        <div className="flex justify-center items-center">
           <BrandBar />
-        </GridItem>
-
-        <GridItem colSpan={3} rowSpan={2}>
-          <DeviceList h={100} />
-        </GridItem>
-      </Grid>
+        </div>
+        <DeviceList />
+      </div>
     </div>
   );
-}
+});
+
+export default Shop;

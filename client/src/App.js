@@ -23,13 +23,13 @@ const App = observer(() => {
           user.setIsAuth(true);
         })
         .finally(() => setLoading(false));
-    }, 1000);
+    }, 500);
   }, []);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div class="lds-ring">
+        <div className="lds-ring">
           <div></div>
           <div></div>
           <div></div>

@@ -9,7 +9,7 @@ const DeviceList = () => {
   const { device } = useContext(Context);
 
   return (
-    <Box className="flex h-screen">
+    <Box className="flex flex-wrap justify-center items-center lg:ml-10">
       {device.devices.map((device) => (
         <DeviceItem key={device.id} device={device} />
       ))}

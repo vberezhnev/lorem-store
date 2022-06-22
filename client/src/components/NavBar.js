@@ -11,6 +11,11 @@ const NavBar = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate()
 
+  const logOut = () => {
+    user.setUser({})
+    user.setIsAuth(false)
+  }
+
   return (
     <>
       <Box bg={'gray.800'} px={10}>
@@ -23,14 +28,13 @@ const NavBar = observer(() => {
           <Flex alignItems={'center'}>
             {user.isAuth ? (
               <Menu>
-                <Button colorScheme="green" mr={2} onClick={() => navigate(ADMIN_ROUTE)}>Админ-панель</Button>
-                <Button colorScheme="green" onClick={() => navigate()}>Выйти</Button>
+                <Button colorScheme="green" mr={2} onClick={() => navigate(ADMIN_ROUTE)}>Админ-панель</Button> {/* TODO: Сделать карзину доступной только для пользователей с ролью ADMIN*/}
+                <Button colorScheme="green" onClick={() => logOut()}>Выйти</Button>
               </Menu>
             ) : (
               <Menu>
                 <Button colorScheme="green" onClick={() => navigate(LOGIN_ROUTE)}>
                   Авторизация
-                  {/* <NavLink to={LOGIN_ROUTE}>Авторизация</NavLink> */}
                 </Button>
               </Menu>
             )}

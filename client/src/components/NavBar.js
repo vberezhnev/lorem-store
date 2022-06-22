@@ -7,7 +7,6 @@ import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts';
 
 import { Box, Flex, HStack, Button, Menu, Heading } from '@chakra-ui/react';
 
-
 const NavBar = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate()

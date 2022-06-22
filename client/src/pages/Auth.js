@@ -8,30 +8,30 @@ import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
 
 import { Flex, Heading, Button, Input, Link } from '@chakra-ui/react';
-import AlertMessage  from '../components/AlertMessage' 
+import AlertMessage from '../components/AlertMessage';
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
   const location = useLocation();
   const navigate = useNavigate();
   const isLogin = location.pathname === LOGIN_ROUTE;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const click = async () => {
     try {
-      let data;
       if (isLogin) {
-        data = await login(email, password);
+        let data = await login(email, password);
       } else {
-        data = await registration(email, password);
+        let data = await registration(email, password);
+        console.log(email, password);
       }
       user.setUser(user);
       user.setIsAuth(true);
-      navigate(SHOP_ROUTE);
+      navigate(SHOP_ROUTE)
     } catch (e) {
-      //return <AlertMessage text={e.response.data.message} />
-      alert(e.response.data.message)
+      alert(e.response.data.message);
     }
   };
 
@@ -48,8 +48,9 @@ const Auth = observer(() => {
           type="password"
         />
 
-        <Button colorScheme="green" onClick={click}>{isLogin ? 'Войти' : 'Регистрация'}</Button>
-        <AlertMessage text='henlo' />
+        <Button colorScheme="green" onClick={click}>
+          {isLogin ? 'Войти' : 'Регистрация'}
+        </Button>
 
         {isLogin ? (
           <Link color={'blue.400'} mt={5}>

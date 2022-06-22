@@ -12,11 +12,11 @@ const DeviceItem = ({ device }) => {
       className="flex flex-wrap m-2 w-[26vh]"
       onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
       <Box>
-        <div
+        <Box
           className="flex-none max-w-sm overflow-hidden rounded-xl duration-200 hover:scale-[1.01]"
           boxShadow="md">
           <img src={`http://localhost:7000/${device.img}`} className="h-auto w-full" alt="item" />
-        </div>
+        </Box>
 
         <div className="p-5 flex-initial">
           <p className="flex justify-center items-center text-lg mb-2 text-gray-700">

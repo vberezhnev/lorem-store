@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createBrand, createType } from '../../http/deviceAPI';
+
 import {
   Button,
   Modal,
@@ -8,11 +10,19 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
+  Input,
 } from '@chakra-ui/react';
 
 const CreateType = ({ show, onHide }) => {
-  const finalRef = React.useRef(null)
+  const finalRef = React.useRef(null);
+  const [value, setValue] = useState('');
+
+  const addBrand = () => {
+    createBrand({ name: value }).then((data) => {
+      setValue('');
+      onHide();
+    });
+  };
 
   return (
     <div>
@@ -21,13 +31,19 @@ const CreateType = ({ show, onHide }) => {
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody>
+            <Input
+              placeholder={'Введите название типа'}
+              onChange={(e) => setValue(e.target.value)}
+              value={value}
+            />
+          </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onHide}>
-              Close
+            <Button colorScheme="green" variant="ghost" mr={3} onClick={onHide}>
+              Закрыть
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button colorScheme="green" onClick={addBrand}>Добавить</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
